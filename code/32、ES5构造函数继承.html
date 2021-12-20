@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>32、ES5构造函数继承</title>
+</head>
+
+<body>
+    <script>
+        // ES5继承的两大重要特点：
+        // 1）使用call方法将父级构造函数的this改成子集，并将子级与父级相同的参数传给父级构造函数
+        // 2）将父级初始化的实例对象赋值给子级的原型对象
+
+
+        // 1、构建父类
+        function Phone(brand, price) {
+            this.brand = brand;
+            this.price = price;
+        }
+
+        Phone.prototype.call = function () {
+            console.log('Phone的call方法')
+        }
+
+        const per = new Phone('华为', '3000')
+        console.log('Phone的实例化对象：', per);
+
+
+        // 2、构建子类
+        function SmartPhone(brand, price, size) {
+            // 因为子级的brand、price和父级的一样，直接继承父级的赋值操作，后面如果相同的参数发生一些改动，只需修改父级的相关参数，其继承的子级会随之动态修改。可以通过call方法来继承，call方法在改变this时会同步调用父级构造函数，执行里面的代码，因为call在调用的时候this指向了子级构造函数，所以父级的this.brand = brand和this.price = price在子级的作用域里面相当是子级自己做了这两个对this.XXX的赋值操作。
+            Phone.call(this, brand, price)
+            this.size = size
+        }
+
+        // 将父级的实例化对象赋值给子级，这样子级也能使用父级原型上的共用方法。此外，还能在原型对象上扩展子级的共用方法。
+        SmartPhone.prototype = new Phone    // 没有加括号的这种方式也是new构造函数的一种，只不过原型上挂的brand和price的值就是undefined了
+        SmartPhone.prototype.constructor = SmartPhone   // 设置子类的构造器为当前子类的构造函数
+        SmartPhone.prototype.version = function () { console.log('SmartPhone的版本') }
+        SmartPhone.prototype.func = function () { console.log('SmartPhone的功能') }
+
+        const smart = new SmartPhone('魅族', '1999', '5.0inch')
+        console.log('SmartPhone的实例化对象：', smart)
+    </script>
+</body>
+
+</html>

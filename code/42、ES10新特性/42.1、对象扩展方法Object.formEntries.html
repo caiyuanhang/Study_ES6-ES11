@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>42.1、对象扩展方法Object.fromEntries</title>
+</head>
+
+<body>
+    <script>
+        // Object.fromEntries是ES10新扩展的对象方法，它接受一个二维数组或Map集合，返回一个基于二维数组Key/Value或Map集合创建的对象。
+        // 1、传入的参数为二维数组。
+        const obj1 = Object.fromEntries([['name', 'HSBC'], ['job', 'FE']])
+        console.log('1、传入的参数为二维数组：', obj1)
+
+        // 2、传入的参数为Map集合。
+        const map = new Map()
+        map.set('开心日', '星期五')
+        map.set('摸鱼日', '星期一')
+        const obj2 = Object.fromEntries(map)
+        console.log('2、传入的参数为Map集合：', obj2)
+    </script>
+</body>
+
+</html>

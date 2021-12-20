@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>43.4、可选链操作符</title>
+</head>
+
+<body>
+    <script>
+        // 可选链操作符"?."，主要用于对象的属性读取，可以节省掉逻辑判断的前提。
+        function main(config) {
+            // 没有使用可选链操作符时，如果外部没传进config，则直接报错，如果使用可选连操作符，即使外部没传进来，也不会报错，而是现实undefined。
+            const data = config?.port
+            console.log('可选链操作符：', data)
+        }
+        main({
+            port: {
+                host: 3030,
+                hash: 'haxi',
+            },
+            data: {
+                shop: '商店1',
+                name: '超级商店'
+            }
+        })
+        main()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21、Promise的基本语法</title>
+</head>
+
+<body>
+    <script>
+        // Promise构造函数接收一个函数作为参数，这个函数则接收两个参数，一个是成功的回调函数resolve，一个是失败的回调函数reject，可以将异步请求成功或失败的值分别传给对应的两者。当调用resolve或reject回调函数之后，Promise的状态会被改成对应的成功或失败的状态（Promise的状态只会被改变一次）。
+        // 改变状态后的Promise可以通过它实例对象的then方法来操作，then方法会接收两个参数，这两个参数都是函数，第一个函数参数的形参可以接收resolve回调函数传递的数据，第二个函数参数的形参可以接收reject回调函数传递的错误数据。具体见如下代码：
+
+        // 实例化 Promise 对象
+        const p = new Promise(function (resolve, reject) {
+            // 模拟异步请求
+            setTimeout(function () {
+                let data = '数据库中的用户数据'
+                // resolve(data)   // 将成功返回的数据传递给resolve
+
+                let err = '数据读取失败'
+                reject(err)  // 将失败的内容传递给reject
+            }, 1000)
+        })
+
+        // 通过Promise实例对象的then方法对成功或失败的值进行处理
+        p.then((res) => {
+            console.log('成功拿到的值：', res);
+        }, (err) => {
+            console.log('失败的错误信息：', err);
+        })
+    </script>
+</body>
+
+</html>

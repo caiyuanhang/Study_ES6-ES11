@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>41.3、正则扩展-反向断言</title>
+</head>
+
+<body>
+    <script>
+        const STR = 'JS5211314你知道么555啦啦啦'
+
+
+        // 1、正则的正向肯定断言，语法为(?=正则表达式)，正向肯定断言正则表达式里面的内容仅仅是判断字符串是否满足断言，而并不捕获其内容。注意：正向肯定断言要放在正则表达式匹配字符串语法的后面，否则不匹配。
+        // const reg1 = /\d+(?=啦)/
+        const reg1 = /\d+(?=啦)/
+        const res1 = reg1.exec(STR)
+        console.log('1、正则的正向肯定断言：', res1)
+
+
+        // 2、正则的反向肯定断言，语法为(?<=正则表达式)，反向肯定断言正则表达式里面的内容也是仅仅判断字符串是否满足断言，而并不捕获其内容。注意：反向肯定断言要放在正则表达式匹配字符串语法的前面，否则不匹配。
+        const reg2 = /(?<=S)\d+/
+        const res2 = reg2.exec(STR)
+        console.log('2、正则的反向肯定断言：', res2)
+
+
+        // 3、扩展学习：正则的正向否定断言，语法为(?!正则表达式)，正向否定断言正则表达式里面的内容仅仅是判断字符串是否满足断言（结果就是正向肯定断言的非），而并不捕获其内容。注意：正向否定断言也要放在正则表达式匹配字符串语法的后面。
+        const reg3 = /\d+(?!啦)/
+        const res3 = reg3.exec(STR)
+        console.log('3、扩展学习：正则的正向否定断言：', res3)
+
+
+        // 4、扩展学习：正则的反向否定断言，语法为(?<!正则表达式)，反向否定断言正则表达式里面的内容也是仅仅判断字符串是否满足断言（结果就是反向肯定断言的非），而并不捕获其内容。注意：反向否定断言也要放在正则表达式匹配字符串语法的前面，否则不匹配。
+        const reg4 = /(?<!S)\d+/
+        const res4 = reg4.exec(STR)
+        console.log('4、扩展学习：正则的反向否定断言：', res4, '这里有问题！')
+    </script>
+</body>
+
+</html>

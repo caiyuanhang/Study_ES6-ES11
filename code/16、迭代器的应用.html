@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16、迭代器的应用</title>
+</head>
+
+<body>
+    <script>
+        // 需求：通过迭代器遍历拿到一个对象里面的数组数据
+        const obj = {
+            name: 'iterator',
+            arr: ['恋爱番', '热血番', '校园番'],
+            [Symbol.iterator]() {
+                const _this = this
+                let i = 0
+
+                return {
+                    next() {
+                        // 因为next方法的this是指向Symbol.iterator返回的这个对象，所以如果要将this指向obj这个对象，需要把obj的this赋值给变量存起来，然后使用。记得要设置一个初始下标。
+                        if (i < _this.arr.length) {
+                            const innerObj = { value: _this.arr[i], done: false }
+                            i++
+                            return innerObj
+                        }
+
+                        return {
+                            value: undefined,
+                            done: true
+                        }
+                    }
+                }
+            }
+        }
+
+        // 注意：因为obj没有iterator接口，所以会报错：obj is not iterable，这时要给obj加上Symbol.iterator这个属性接口，这个属性是一个方法，要返回一个对象（如果不是return一个对象，会接着报错：Result of the Symbol.iterator method is not an object）。接着继续报错：undefined is not a function，这是因为返回的对象没有设置next方法，所以在js内部调用next的时候，为undefined，而设置了next方法之后，依然报错：Iterator result undefined is not an object，这时因为next方法需要返回一个对象，并且对象里面需要有value、done这两个属性。当这一步完成之后，一个自定义的迭代器就拿到了。（但还需要设置具体的一些条件，否则会进入死循环）
+        for (let v of obj) {
+            console.log('obj的v：', v);
+        }
+    </script>
+</body>
+
+</html>

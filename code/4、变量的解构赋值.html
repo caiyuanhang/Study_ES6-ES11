@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3、变量的解构赋值</title>
+</head>
+
+<body>
+    <script>
+        // 1、数组的解构赋值。
+        const name = ['小刘', '小李', '小邓', '小王'];
+        // let [liu, li, deng, wang] = name;
+        const [liu, li, deng, wang] = name;
+        // var [liu, li, deng, wang] = name;
+        console.log('数组的解构赋值：', liu, li, deng, wang);
+
+
+        // 2、对象的解构赋值。
+        const obj = {
+            nameObj: '小刘',
+            ageObj: 30,
+            actionObj: function () {
+                console.log('小刘的action启动了');
+            }
+        };
+        const { one, two, three } = obj;
+        console.log('对象的解构赋值，变量名随意定义：', one, two, three);   // 全都是undefined
+        const { nameObj, ageObj, actionObj } = obj;
+        console.log('对象的解构赋值，变量名跟对象属性保持一致：', nameObj, ageObj, actionObj);
+    </script>
+</body>
+
+</html>

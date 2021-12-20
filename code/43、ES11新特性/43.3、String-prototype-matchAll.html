@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>43.3、String-prototype-matchAll</title>
+</head>
+
+<body>
+    <script>
+        // String.prototype.matchAll 方法，可用于批量提取字符串中符合匹配要求的内容，matchAll 方法返回一个可迭代对象。
+        const str = `
+            <ul>
+                <li>
+                    <a>肖生客克的救赎</a>
+                    <p>上映日期：1994-09-10</p>
+                </li>
+                <li>
+                    <a>阿甘正传</a>
+                    <p>上映日期：1994-07-06</p>
+                </li>
+            </ul>
+        `
+        const reg = /<li>.*?<a>(.*?)<\/a>.*?<p>(.*?)<\/p>.*?<\/li>/gs
+        const res = str.matchAll(reg);
+
+        // 可迭代对象可以通过for...of循环来拿到值，也可以通过扩展运算符来拿到值。
+        const resPoint = [...res]
+        console.log('matchAll方法的结果，通过扩展运算符拿到值：', resPoint);
+
+        for (let v of resPoint) {
+            console.log('matchAll方法的结果，通过for...of拿到值：', v);
+        }
+    </script>
+</body>
+
+</html>

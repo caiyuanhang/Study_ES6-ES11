@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7、箭头函数的实践应用</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        let box = document.querySelector(".box");
+
+
+        // 用法1：改变this
+        box.addEventListener("click", function () {
+            // setTimeout的普通函数this指向window
+            // setTimeout(function () {
+            //     console.log("setTimeout普通函数的this：", this);
+            // }, 2000)
+
+            // setTimeout的箭头函数this指向点击对象
+            setTimeout(() => {
+                console.log("setTimeout箭头函数的this：", this);
+                this.style.background = 'pink';
+            }, 2000)
+        })
+
+
+        // 用法2：简化写法
+        let arrNum = [1, 3, 4, 6, 100];
+        // 普通函数写法
+        let res = arrNum.filter(function (item) {
+            if (item % 2 === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        })
+        console.log("普通函数写法-数组偶数：", res);
+        // 箭头函数写法
+        let res1 = arrNum.filter(item => item % 2 !== 0);
+        console.log("箭头函数写法-数组奇数：", res1);
+
+
+        // 适用范围：
+        // 1）箭头函数适用于和this无关的回调，比如：定时器、延时器、数组方法的回调；
+        // 2）箭头函数不适用于和this有关的回调，比如：事件、对象方法的回调。
+    </script>
+</body>
+
+</html>

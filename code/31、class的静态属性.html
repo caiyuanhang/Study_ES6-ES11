@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>31、class的静态属性</title>
+</head>
+
+<body>
+    <script>
+        // 在ES5的构造函数里，分为函数对象和实例化对象，注意：函数对象的属性（也称为静态属性）在实例化对象中是无法拿到的。同样在ES6的class中，也有这个注意点，只是在class中，静态属性前面要添加static关键字。
+
+
+        // 一、在ES5构造函数中，静态属性是这样的。
+        function Person(name, age) {
+            this.name = name;
+            this.age = age
+        }
+        Person.dis = function () { console.log('路飞-海贼王'); }
+        Person.skill = '橡胶果实'
+        const per1 = new Person()
+        console.log('Person的函数对象：', Person.skill);
+        Person.dis()
+        console.log('per1的实例化对象：', per1);
+        console.log('-------', new Person);
+
+
+        // 二、在ES6 class中，静态属性是这样的，注意要加static关键字
+        class Per {
+            static name = '鸣人'
+            static skill = function () { console.log('螺旋丸') }
+            constructor() { }
+        }
+        console.log('Per的函数对象：', Per.name);
+        Per.skill()
+    </script>
+</body>
+
+</html>

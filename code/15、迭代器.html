@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15、迭代器</title>
+</head>
+
+<body>
+    <script>
+        const arr = ['三国演义', '西游记', '红楼梦']
+        const str = 'abc'
+
+        // for...of可以用来遍历循环具有iterator接口的数据结构，此时的v可以拿到数据结构的值
+        for (let v of arr) {
+            console.log("for-of-arr：", v)
+        }
+        for (let v of str) {
+            console.log("for-of-str：", v)
+        }
+
+        // 而for...in拿到的是键
+        for (let v in arr) {
+            console.log("for-of-arr：", v)
+        }
+        for (let v in str) {
+            console.log("for-of-str：", v)
+        }
+
+        // Symbol.iterator方法调用后可以创建一个当前数据结构的对象，这个对象的原型结构上包含一个next方法，next方法调用后，会返回一个包含value和done属性的对象，value表示当前的值，done表示迭代器是否完成的度。当value为undefined，done为true的时候表示迭代完成，后续没有相关的迭代数据。
+        const iterator = arr[Symbol.iterator]()
+        console.log('iterator：', iterator.next());
+        console.log('iterator：', iterator.next());
+        console.log('iterator：', iterator.next());
+        console.log('iterator：', iterator.next());
+    </script>
+</body>
+
+</html>

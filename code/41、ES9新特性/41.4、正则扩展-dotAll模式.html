@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>41.4、正则扩展-dotAll模式</title>
+</head>
+
+<body>
+    <script>
+        // .（元字符）：是正则里面的元字符，能匹配除换行符以外的任意单个字符。
+        // dotAll模式，就是在正则表达式后面添加s修饰符，这样.元字符就也能匹配换行符。
+
+
+        // 需求：提取字符串中的电影名称和上映日期。
+        const str = `
+            <ul>
+                <li>
+                    <a>肖生客克的救赎</a>
+                    <p>上映日期：1994-09-10</p>
+                </li>
+                <li>
+                    <a>阿甘正传</a>
+                    <p>上映日期：1994-07-06</p>
+                </li>
+            </ul>
+        `
+
+
+        // 如果按照普通的正则匹配方式来匹配，则要写很多去除空白符、换行符的\s，如下代码所示：
+        const reg1 = /<li>\s*?<a>(?<title>.*?)<\/a>\s*?<p>(?<date>.*?)<\/p>/
+        const res1 = reg1.exec(str)
+        console.log('1、普通的\s匹配模式：', res1)
+
+
+        // 使用dotAll模式，可以将在正则表达式后面统一加s（加了g修饰符之后，多次使用相同的正则匹配同样的字符串，则可以依次返回满足条件的字符串内容）
+        const reg2 = /<li>.*?<a>(?<title>.*?)<\/a>.*?<p>(?<date>.*?)<\/p>/gs
+        // console.log(reg2.exec(str), reg2.exec(str));
+        let amount;
+        const info = []
+        while (amount = reg2.exec(str)) {
+            info.push(amount.groups)
+        }
+        console.log('2、使用dotAll模式：', info)
+    </script>
+</body>
+
+</html>

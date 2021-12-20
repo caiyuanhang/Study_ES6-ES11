@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9、rest参数</title>
+</head>
+
+<body>
+    <script>
+        // ES5获取实参的方式
+        function date1() {
+            // 注意：arguments是一个对象
+            console.log("ES5获取实参的方式-arguments：", arguments, Object.prototype.toString.call(arguments));
+            console.log();
+        };
+        date1("星期一", "星期二", "星期三");
+
+
+        // ES6获取实参的方式
+        function date2(...rest) {
+            // 注意：rest是一组数组
+            console.log("ES6获取实参的方式-rest：", rest, Object.prototype.toString.call(rest));
+        }
+        date2(1, 2, 3, 4, 5)
+
+
+        // 备注：rest形参必须放到其他形参的最后
+        function date3(a, b, ...rest) {
+            console.log('date3-a：', a);
+            console.log('date3-b：', b);
+            console.log('date3-rest：', rest);
+        }
+        date3(1, 2, 3, 4, 5)
+
+        // 如果rest放在其他参数前面，则会报错：Rest parameter must be last formal parameter！！
+        // function date3(a, ...rest, b) {
+        //     console.log('date3-a：', a);
+        //     console.log('date3-b：', b);
+        //     console.log('date3-rest：', rest);
+        // }
+        // date3(1, 2, 3, 4, 5)
+    </script>
+</body>
+
+</html>

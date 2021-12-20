@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>27、Set介绍与API</title>
+</head>
+
+<body>
+    <script>
+        // Set集合里面的值只能接收具有iterable接口的数据结构，比如：可以传入字符串和数组，不能传入对象、布尔值和数字。放了后面三者会报类型错误：XXX(类型) YYY(传入的值) is not iterable (cannot read property Symbol(Symbol.iterator))
+        const s = new Set('abc')
+        console.log('new一个Set：', s);
+
+        // Set会自动去重
+        const s1 = new Set(['好事儿', '坏事儿', '开心事儿', '糟心事儿', '坏事儿'])
+        console.log(s1);
+
+        // size属性，类似数组的length方法，得到当前Set的元素个数
+        console.log(s1.size)
+
+        // add方法，给Set添加元素，返回当前的Set
+        const sAdd = s1.add('烂事儿')
+        console.log('Set的add方法：', sAdd);
+
+        // delete方法，删除Set中指定的元素，返回布尔值，删除成功则返回true
+        const sDelete = s1.delete('坏事儿')
+        console.log('Set的delete方法：', sDelete, s1);
+
+        // has方法，判断Set中是否有某个元素，返回布尔值，有则返回true
+        const sHas = s1.has('好事儿')
+        console.log('Set的has方法：', sHas);
+
+        // clear方法，将Set中的元素全部清空，没有返回值。
+        const sClear = s1.clear()
+        console.log('Set的clear方法：', sClear, s1);
+    </script>
+</body>
+
+</html>

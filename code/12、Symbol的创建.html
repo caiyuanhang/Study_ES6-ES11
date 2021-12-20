@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12、Symbol的创建</title>
+</head>
+
+<body>
+    <script>
+        // 1）使用Symbol()创建。
+        let s1 = Symbol();
+        let s2 = Symbol('学习');
+        let s3 = Symbol('学习');
+        console.log('使用Symbol()来创建Symbol：', s1, typeof s1);
+        console.log('判断通过Symbol方法创建的具有相同描述内容(学习)的Symbol是否相同：', s2 === s3);    // 虽然描述内容相同，但使用Symbol()创建的具有相同描述内容的Symbol仍然是两个不同的Symbol
+
+
+        // 2）使用Symbol.for()创建。
+        let s4 = Symbol.for();
+        let s5 = Symbol.for('code');
+        let s6 = Symbol.for('code');
+        console.log('使用Symbol.for()来创建Symbol：', s4, typeof s4);
+        console.log('判断使用Symbol.for创建的具有相同描述内容(code)的Symbol是否相同：', s5 === s6);    // 使用Symbol.for()创建的具有相同描述内容的Symbol是两个相同的Symbol。原理：是该方法会搜索有没有以接受的参数作为描述内容的 Symbol 值。如果有，就返回这个 Symbol 值，否则就新建一个以该参数为描述内容的 Symbol 值，并将其注册到全局。Symbol.for()不会每次调用就返回一个新的 Symbol 类型的值，而是会先检查给定的key是否已经存在，如果不存在才会新建一个值。
+
+
+        // 3）Symbol不能与其他数据类型进行运算
+        let res1 = s1 + 100;
+        let res2 = s1 > 100;
+        let res3 = s1 + 'string';
+        // 报错，Cannot convert a Symbol value to a number
+    </script>
+</body>
+
+</html>

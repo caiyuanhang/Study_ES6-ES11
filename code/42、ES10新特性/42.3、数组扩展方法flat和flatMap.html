@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>42.3、数组扩展方法flat和flatMap</title>
+</head>
+
+<body>
+    <script>
+        // 1、flat方法，将多维数组转化为低维数组，flat(number)接受一个number类型的参数，表示转化的维度。比如：flat(2)表示将一个三维数组转换成一个一维数组。
+        const arr1 = [1, 2, 3, [4, 5]]
+        const arr2 = [6, 7, 8, [9, 10, [11, 12, 13]]]
+        console.log('1、flat方法（没有传递参数）：', arr1.flat())
+        console.log('2、flat方法（传递参数）：', arr2.flat(2))
+
+        // 2、flatMap方法，相当于是map方法和flat方法的结合体。
+        const arr3 = [11, 22, 33].map(item => [item * 10])
+        console.log('3、flatMap方法：', arr3, [44, 55, 66].flatMap(item => [[item * 10]]))
+    </script>
+</body>
+
+</html>

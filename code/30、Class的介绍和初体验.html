@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30、Class的介绍和初体验</title>
+</head>
+
+<body>
+    <script>
+        // 一、构造函数实例化对象
+        // 在没出现ES6 class之前，实例化对象一般都是使用ES5构造函数的方式来操作（函数首字母大写，并且实例化的时候要用new关键字，构造函数名称后面括号没有参数可以不加，但建议加上。注意：构造函数本身也是个对象），具体代码如下：
+        function Elec(brand, version) {
+            // 在这里通过this.参数名，将构造函数传入的参数赋值给实例化对象对应参数名的属性。
+            this.brand = brand;
+            this.version = version
+        }
+
+        // 给构造函数的原型挂上方法，这样在new不同的构造函数时，尽管参数不一样，但可以共用同一套方法。
+        Elec.prototype.feature = function () {
+            console.log(`${this.brand}-${this.version}机型薄，耗电低，屏幕高清`);
+        }
+
+        // 构造函数实例化对象
+        const computer = new Elec('联想', 'T14')
+        console.log('通过ES5构造函数实例化的对象-computer：', computer);
+        computer.feature()
+
+        const phone = new Elec('小米', '11Pro')
+        console.log('通过ES5构造函数实例化的对象-phone：', phone);
+        phone.feature()
+
+
+        // 二、class类实例化对象
+        // class实例化对象是ES5构造函数实例化的一种语法糖（类名首字母要大写）。
+        class Phone {
+            // 每一个类都可以有一个constructor构造器函数（但不是必须有，也可以没有），这个构造器就类似上面定义的构造函数
+            constructor(brand, version) {
+                this.brand = brand;
+                this.version = version;
+            }
+
+            // 之前挂在构造函数原型对象上的方法，可以直接写在这里，注意：书写共用方法时，不能使用ES5对象的完整形式，如：feature: function(){}，这样会报错。要使用class的方式来书写，如：feature(){}
+            feature() {
+                console.log(`${this.brand}--${this.version}`);
+            }
+        }
+
+        // class实例化对象
+        const com = new Phone('宏碁', '暗影骑士')
+        console.log('ES6-class实例化的对象：', com);
+        com.feature()
+
+        const pho = new Phone('OPPO', '最新版')
+        console.log('ES6-class实例化的对象：', pho);
+        pho.feature()
+    </script>
+</body>
+
+</html>

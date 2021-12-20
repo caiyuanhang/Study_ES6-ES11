@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1、let变量声明以及相关特性</title>
+</head>
+
+<body>
+    <script>
+        // 1、声明特性：
+        let a; // 声明单个变量
+        let b, c, d; // 声明多个变量
+        let e = 100; // 声明并赋值单个变量
+        let f = 100,
+            g = 'string',
+            h = []; // 声明并赋值多个变量
+        console.log('1、声明特性：', a, b, c, d, e, f, g, h)
+
+
+        // 2、其他特性
+        // 1）变量不能重复声明。使用let的变量不能重复声明，但是var可以重复声明变量。
+        // let a1 = 1;
+        // let a1 = 2;   // error：Identifier 'a1' has already been declared
+
+        // 2）不存在变量提升。var声明的变量具有变量提升，let没有
+        console.log('var有变量提升：', b1);    // b2 = undefined
+        var b1 = 123;
+        // console.log('变量提升：', b2)   // Cannot access 'b1' before initialization
+        let b2 = 123;
+
+        // 3）let变量具有块级作用域。es5 var变量的作用域有三种：全局、函数、eval（在严格模式下才有），而let变量只在当前代码块的作用域有效，代码块外部是无法访问到当前变量的。
+        {
+            let c1 = "ahang";
+            console.log("c1：", c1); // 可以访问
+        }
+        // console.log("c1：", c1); // c1 is not defined
+
+        // 4）不影响作用域链
+        {
+            let d1 = 'xiaohang';
+            function fn() {
+                console.log('d1：', d1);
+            }
+            fn();   // fn函数内部作用域找不到d1，仍能往上一层作用域查找d1。
+        }
+    </script>
+</body>
+
+</html>

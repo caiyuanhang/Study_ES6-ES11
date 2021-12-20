@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>43.2、Promise-allSettled方法</title>
+</head>
+
+<body>
+    <script>
+        // 1、Promise.allSettled方法，接受一个Promise的数组，返回一个新Promise，新Promise的状态永远是成功的，并且值为-以传入的每个Promise结果状态和结果值构成的对象-而形成的对象数组（就算传入的Promise有失败的，也不影响新Promise的状态）。
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('商品数据-01')
+            }, 1000)
+        })
+        const p2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('商品数据-02')
+            }, 1000)
+        })
+        const p3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject('获取商品数据失败！')
+            }, 1000)
+        })
+        const all_settled = Promise.allSettled([p1, p2, p3])
+        console.log('1、Promise.allSettled方法：', all_settled);
+
+        // 2、Promise.allSettled和Promise.all的区别：Promise.allSettled 方法，跟 Promise.all 方法很类似，都是接受一个 Promise 的数组，然后返回一个新的 Promise。两者不同的点在于，allSetteled 返回的 Promise 永远是成功的，并且成功的值是-以传入的每个Promise结果状态和结果值构成的对象-而形成的对象数组，all 则是传入的所有 Promise 都是成功的，其返回的 Promise 的结果状态才是成功，且值为所有 Promise 结果值的数组，如果传入的 Promise 有一个失败了，则 all 返回 Promise 的结果状态为失败的，值为失败的那个 Promise 的值。
+        const all1 = Promise.all([p1, p2])
+        const all2 = Promise.all([p1, p2, p3])
+        console.log('2、Promise.all-成功：', all1);
+        console.log('3、Promise.all-失败：', all2);
+
+        // 3、关于两者的应用场景：
+        // 1）如果需要知道批量异步任务处理中，每个异步任务的处理情况，可以使用Promise.allSettled；
+        // 2）如果是需要获取所有异步任务都完成后的结果，可以使用Promise.all
+    </script>
+</body>
+
+</html>

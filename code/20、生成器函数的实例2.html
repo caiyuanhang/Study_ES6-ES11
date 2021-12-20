@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20、生成器函数的实例2</title>
+</head>
+
+<body>
+    <script>
+        // 同样实例2也是生成器函数解决回调地狱问题的一个经典示例。
+        // 需求：模拟从API获取用户数据、订单数据、商品数据，并且是按先后顺序来获取（先获取了用户数据，然后才可以获取订单数据，最后才能获取商品数据）
+        function getUsers() {
+            setTimeout(() => {
+                let data = '用户数据'
+                iterator.next(data)   // 当前next方法接收的参数会作为上一个yield语句的返回结果
+            }, 1000)
+        }
+
+        function getOrders() {
+            setTimeout(() => {
+                let data = '订单数据'
+                iterator.next(data)
+            }, 1000)
+        }
+
+        function getGoods() {
+            setTimeout(() => {
+                let data = '商品数据'
+                iterator.next(data)
+            }, 1000)
+        }
+
+        function* gen() {
+            let users = yield getUsers();
+            console.log('users：', users);
+
+            let orders = yield getOrders();
+            console.log('orders：', orders);
+
+            let goods = yield getGoods();
+            console.log('goods：', goods);
+        }
+
+        const iterator = gen()
+        iterator.next() // 第一次调用next方法，然后开始调用getUsers来获取用户数据。
+
+        // 总结：通过使用generator函数来使异步请求代码看起来像同步代码一样整洁，这样也具有维护性。
+    </script>
+</body>
+
+</html>

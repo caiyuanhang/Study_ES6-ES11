@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>42.2、字符串扩展方法trimStart和trimEnd</title>
+</head>
+
+<body>
+    <script>
+        const str = '   ILoveYou   '
+        console.log('0、原始字符串：', str, str.length)
+
+        // 1、trimStart()，清除字符串左边的空格。
+        const clearStart = str.trimStart()
+        console.log('1、trimStart方法：', clearStart, clearStart.length)
+
+        // 2、trimEnd()，清除字符串右边的空格。
+        const clearEnd = str.trimEnd()
+        console.log('2、trimEnd方法：', clearEnd, clearEnd.length)
+
+        // 3、trim()，清除字符串
+        const clearAll = str.trim()
+        console.log('3、trim方法：', clearAll, clearAll.length);
+    </script>
+</body>
+
+</html>

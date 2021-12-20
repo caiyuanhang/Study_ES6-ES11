@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38.3、使用babel将ES6代码转换成ES5</title>
+</head>
+
+<body>
+    <!-- 
+        使用babel转换ES6代码为ES5，需要如下步骤：
+        1、npm init，然后安装工具：babel-cli、babel-preset-env、browserify；
+        2、使用babel-preset-env转换命令：
+        npx babel js -d dist/js --presets=babel-preset-env；（-d前面的是输入文件的路径，-d后面是输出文件的路径）
+        3、使用browserify打包文件的命令：
+        npm browserify dist/js/moduleAll.js -o dist/bundle.js（-o前面为要打包的文件，-o后面为打包后输出的文件）
+     -->
+    <script src="./dist/bundle.js"></script>
+</body>
+
+</html>

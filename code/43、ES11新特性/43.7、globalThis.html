@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>43.7、globalThis</title>
+</head>
+
+<body>
+    <script>
+        // globalThis，是 ES11 引入的一个特殊变量（全局 this），它能忽略环境的影响，globalThis 始终是指向全局对象 window。
+        console.log('1、window全局对象：', window)
+        console.log('2、globalThis全局this：', globalThis)
+        console.log('3、window === globalThis：', window === globalThis)   // window和globalThis在堆当中的引用地址是一样的。
+    </script>
+</body>
+
+</html>

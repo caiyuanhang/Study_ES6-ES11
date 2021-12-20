@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>29、Map介绍与API</title>
+</head>
+
+<body>
+    <script>
+        // Map是一个类对象的数据结构，可以看作是升级版的对象，因为它的Key不再仅限于字符串，Key可以是任意类型，甚至是对象，具体见下面演示代码。
+        const m = new Map()
+
+        // 1、set(参数1，参数2)方法为Map添加新元素，参数1是键，参数2是键值。返回值是当前添加了新元素的Map，注意：如果添加了重复的键和键值，后面的键和键值会覆盖前面的。
+        m.set('newMap', true)
+        m.set(123, null)
+        m.set(true, undefined)
+        const obj = { obj: '123' }  // 对象要用一个常量来把其在堆里面的指针存起来，然后使用get查询这个对象键的时候，get和set才指的是同一个对象，否则每次声明一个对象，虽然内容看着是相同的，但是它们在堆里面的指针是不同的。
+        m.set(obj, 112233)
+        m.set(null, function () { console.log('Map里面的null') })
+        console.log('Map：', m,)
+
+        // 2、get(参数)方法可以根据指定的参数键来获取对应的键值。返回值是参数键对应的键值。
+        m.get(null)()
+        console.log('Map的get方法：', m.get('newMap'))
+        console.log('Map的get方法：', m.get(123))
+        console.log('Map的get方法：', m.get(obj))
+
+        // 3、size属性，可以获取当前Map的元素数量。
+        console.log('Map的size属性：', m.size)
+
+        // 4、has(参数)，查询参数键是否存在于Map中。返回值是布尔值
+        console.log('Map的has方法：', m.has(obj))
+        console.log('Map的has方法：', m.has('123'))
+        console.log('Map的has方法：', m.has('newMap'))
+
+        // 5、clear()，清除当前Map中的所有元素。
+        // m.clear()
+        // console.log('使用clear清除过的m：', m)
+    </script>
+</body>
+
+</html>

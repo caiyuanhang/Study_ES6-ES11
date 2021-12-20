@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36、关于数值的扩展</title>
+</head>
+
+<body>
+    <script>
+        // 1、Math.tranc方法，抹掉一个数值的小数位，返回抹除掉小数的整数。
+        console.log('1、Math.tranc方法，抹掉一个数值的小数位：', Math.trunc(10.1123))
+
+        // 2、Math.sign方法，判断一个数值是否为正书、0或负数。
+        // 如果是正数，返回1
+        console.log('2、Math.sign方法，判断是否正数：', Math.sign(111))
+        // 如果是0，返回0
+        console.log('Math.sign方法，判断是否为0：', Math.sign(0))
+        // 如果是负数，返回-1
+        console.log('Math.sign方法，判断是否负数：', Math.sign(-111))
+
+        // 3、Number.EPSILON属性，在JS中表示最小精度2.220446049250313e-16，任意两个数值的差小于这个值，都表示两者相等。
+        console.log('3、Number.EPSILON：', Number.EPSILON)
+        function equal(a, b) {
+            if (Math.abs(a - b) < Number.EPSILON) return true
+            return false
+        }
+        console.log('01+0.2：', 0.1 + 0.2, '通过Number.EPSILON比较0.1+0.2是不是等于0.3：', equal(0.1 + 0.2, 0.3))
+
+        // 4、Number.isNaN方法，判断一个数值是否是NaN，返回值是布尔值，true表示是NaN，false表示非NaN
+        console.log('4、Number.NaN，判断一个数值是否是NaN：', Number.isNaN(123 - 'a'), Number.isNaN(123 + 'a'))
+
+        // 5、Number.isFinite方法，检测一个数值是否为有限数，返回值是布尔值，true表示是有限数，false表示非有限数。
+        console.log('5、Number.isFinite检测数值是否为有限数：', Number.isFinite(100 / 0), Number.isFinite(100))
+
+        // 6、Number.parseInt方法、Number.parseFloat方法，将字符串转成数值，并去除字符串中第一个非数值开始往后的所有部分。
+        console.log('6、Number.parseInt将字符串转成整数：', Number.parseInt('123aaa'), Number.parseInt('456bb789'))
+        console.log('Number.parseFloat将字符串装成浮点数：', Number.parseFloat('111.123aa'))
+
+        // 7、Number.isInteger方法，判断一个数值是否为整数，返回值是布尔值，true表示是整数，false表示是非整数
+        console.log('7、Number.isInteger判断一个数值是否为整数：', Number.isInteger(23.123), Number.isInteger(23))
+    </script>
+</body>
+
+</html>

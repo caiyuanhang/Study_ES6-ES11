@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2、let经典案例实践</title>
+    <link crossorigin="anonymous" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+        rel="stylesheet">
+    <style>
+        .item {
+            width: 100px;
+            height: 50px;
+            border: solid 1px rgb(42, 156, 156);
+            float: left;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="page-header">点击切换颜色</h2>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <script>
+        let items = document.querySelectorAll('.item');
+
+
+        // 错误做法：
+        // for (var i = 0; i < items.length; i++) {
+        //     // for循环运行的时候，按照items[i]给对应的元素绑定了onclick事件，不受i全局作用域的影响。
+        //     items[i].onclick = function () {
+        //         item[i].style.background = 'green';
+        //     }
+        // }
+        // i使用var声明会error，Cannot read property 'style' of undefined，因为var变量的作用域是全局、函数、eval，此时i挂在全局作用域，值为3，所以会error。
+
+
+        // 正确做法1，使用let给i声明变量，让每个i都处于一个块级作用域：
+        // for (let i = 0; i < items.length; i++) {
+        //     items[i].onclick = function () {
+        //         items[i].style.background = 'green';
+        //     }
+        // }
+
+
+        // 正确做法2，使用this，让目标元素指向触发事件的对象：
+        for (let i = 0; i < items.length; i++) {
+            items[i].onclick = function () {
+                this.style.background = 'green';
+            }
+        }
+    </script>
+</body>
+
+</html>

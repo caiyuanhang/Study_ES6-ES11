@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>34、子类对父类方法的重写</title>
+</head>
+
+<body>
+    <script>
+        // 在class语法中，子类的方法中不能调用父类原型上的方法，如果要实现跟父类原型里面的方法的相同功能，只能重写
+        class Phone {
+            constructor() { }
+            call() {
+                console.log('我能打电话')
+            }
+        }
+
+        class SmartPhone extends Phone {
+            constructor() {
+                super()
+            }
+
+            // 对父类的call方法进行重写
+            call() {
+                // super()  // 无法对父类进行调用
+                console.log('我能打视频电话')
+            }
+        }
+
+        const smart = new SmartPhone()
+        console.log(smart)
+        smart.call()
+    </script>
+</body>
+
+</html>

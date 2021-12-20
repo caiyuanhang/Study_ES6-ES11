@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24、Promise-prototype-then方法</title>
+</head>
+
+<body>
+    <script>
+        // then方法返回一个Promise对象，正因如此，then是支持链式调用的。
+        // 注意：then形参回调中(不管是成功的形参回调还是失败的形参回调）返回值如果是非Promise对象的其他值，则这个then返回的Promise是成功状态，并且它的值为返回的值。如果返回的是Promise对象，则then返回的Promise对象的状态和值取决于形参回调返回的这个Promise对象的状态和值。只有返回值是throw抛出错误，then返回的Promise对象的状态才为rejected
+        const p = new Promise((resolve, reject) => {
+            // 用延时器模拟call api后，返回的用户数据
+            setTimeout(() => {
+                // resolve('用户数据')
+                reject('call api失败')
+            }, 1000)
+        })
+
+        const thenPromise = p.then(res => {
+            console.log('res：', res);
+
+            throw 'errors'
+        }, reason => {
+            console.warn('reason：', reason);
+
+            return new Promise((resolve, reject) => {
+                // resolve('then成功')
+                reject('then失败')
+            })
+        })
+
+        console.log('thenPromise：', thenPromise);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>37、对象方法扩展</title>
+</head>
+
+<body>
+    <script>
+        // 1、Object.is(参数1，参数2)，作用类似===，接收两个参数，严格比对参数1和参数2的值和类型是否一致，返回值是布尔值，类型和值都一致返回true吗，否则返回false。但要注意+0和-0，NaN和NaN这两个特例。
+        console.log("1、Object.is对比'111'和111：", Object.is('111', 111))
+        console.log("Object.is对比22和22：", Object.is(22, 22))
+        console.log("Object.is对比+0和-0：", Object.is(+0, -0), '+0 === -0：', +0 === -0)
+        console.log("Object.is对比NaN和NaN：", Object.is(NaN, NaN), 'NaN === NaN：', NaN === NaN)
+
+        // 2、Object.assign(参数1，参数2)，主要是将参数2的属性合并到参数1，遇到相同的属性，参数2的会覆盖掉参数1的。
+        const obj1 = {
+            host: 'localhost',
+            name: 'baidu',
+            time: 2000
+        }
+        const obj2 = {
+            host: 'https://www.bilibili.com',
+            name: 'bilibili',
+            port: 4000
+        }
+        const objAll = Object.assign(obj1, obj2)
+        console.log('2、Object.assign：', objAll === obj1, obj2)
+
+        // 3、Object.setPrototypeOf(参数1，参数2)，将参数2设置为参数1的原型对象
+        const obj3 = {
+            anime: '海贼王',
+            sets: 1000
+        }
+        const obj4 = {
+            anime: '火影',
+            sets: 877
+        }
+        Object.setPrototypeOf(obj3, obj4)
+        console.log('3、Object.setPrototypeOf：', obj3)
+
+        // 4、Object.getPrototypeOf(参数)，获取指定参数的原型对象
+        console.log('4、Object.getPrototypeOf：', Object.getPrototypeOf(obj3))
+    </script>
+</body>
+
+</html>

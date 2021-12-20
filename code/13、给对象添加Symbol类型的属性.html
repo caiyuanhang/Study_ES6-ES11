@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13、给对象添加Symbol类型的属性</title>
+</head>
+
+<body>
+    <script>
+        // 方式1：在外面新创一个对象，以你要扩展的属性命名来存储Symbol值，然后再将Symbol值传给要扩展属性的对象当作属性名，这样可以保证扩展的属性名是独一无二的。（在给已存在的对象，但不清楚属性名情况的对象扩展属性时，使用Symbol的方式命名属性名会比较安全，因为你不清楚命名的属性名在对象里面是否已经存在）如下示例：
+        let obj = {
+            up: function () { console.log('我是obj的up') },
+            down: function () { console.log('我是obj的up') },
+            name: '张三',
+        }
+        let methods = {
+            up: Symbol('up'),
+            down: Symbol('down'),
+        }
+        obj[methods.up] = function () { console.log('我是Symbol的up'); };
+        obj[methods.down] = function () { console.log('我是Symbol的down'); };
+        console.log('obj：', obj);
+        obj[methods.up]()   // 注意：使用methods这种对象形式创建的Symbol扩展属性，在调用的时候要用[methods.up]这种形式调用。
+
+        // 方式2：obj的属性命名直接采用Symbol形式。
+        const heiye = Symbol('黑夜')
+        let game = {
+            name: '狼人杀',
+            [Symbol('白天')]: function () {
+                console.log('到白天了');
+            },
+            [heiye]: function () {
+                console.log('到黑夜了');
+            }
+        }
+        console.log('game：', game);
+        console.log('获取game的symbol key：', Reflect.ownKeys(game));
+        game[heiye]()   // 补充：直接给obj添加Symbol作为方法的属性名，该方法很难调用，可以先把Symbol赋值给一个变量，再将变量引入对象中作为方法的属性名，然后调用该方法的时候，直接使用中括号变量的方法调用就可以了。
+    </script>
+</body>
+
+</html>

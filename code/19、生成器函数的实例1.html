@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19、生成器函数的实例1</title>
+</head>
+
+<body>
+    <script>
+        // 需求：1秒后打印111，2秒后打印222，3秒后打印333
+        // 如果使用传统的回调函数，会出现回调地狱的问题。
+        // setTimeout(() => {
+        //     console.log(111);
+
+        //     setTimeout(() => {
+        //         console.log(222);
+
+        //         setTimeout(() => {
+        //             console.log(333);
+        //         }, 3000)
+        //     }, 2000)
+        // }, 1000)
+
+        // 而生成器函数可以很好解决回调地狱的问题，让代码看起来更整洁、更具有维护性
+        function one() {
+            setTimeout(() => {
+                console.log(111111);
+                console.log(iterator.next());
+            }, 1000)
+
+            return 111111
+        }
+        function two() {
+            setTimeout(() => {
+                console.log(222222);
+                console.log(iterator.next());
+            }, 2000)
+
+            return 222222
+        }
+        function three() {
+            setTimeout(() => {
+                console.log(333333);
+                console.log(iterator.next());
+            }, 3000)
+
+            return 333333
+        }
+        function* gen() {
+            yield one()
+            yield two()
+            yield three()
+        }
+        const iterator = gen()
+        console.log(iterator.next());
+    </script>
+</body>
+
+</html>

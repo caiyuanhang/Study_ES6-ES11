@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>43.6、BigInt类型</title>
+</head>
+
+<body>
+    <script>
+        // BigInt 类型，也叫大整型类型，是一种原始数据类型，主要用作大数值运算。可以通过在整型后面添加n来得到一个大整型，BigInt 同时还是一个方法，可以将整型数值转换成大整型数值。注意：大整型数值只能与相同的数据类型进行加减乘除。
+        let n = 520n;
+        console.log('1、通过在整型后面添加n来得到大整型：', n)
+
+        let max = Number.MAX_SAFE_INTEGER
+        console.log('2、JS中最大的整型数值：', max);
+        console.log('MAX_SAFE_INTEGER + 1 === MAX_SAFE_INTEGER + 2：', max + 1 === max + 2);   // MAX_SAFE_INTEGER往上的数值如果要再继续相加，就需要使用整型了，不使用整型就会出现MAX_SAFE_INTEGER + 1 === MAX_SAFE_INTEGER + 2这种数学运算错误的情况。
+
+        let bigMax = BigInt(max)
+        console.log('3、将MAX_SAFE_INTEGER转换成BigInt：', bigMax);
+        console.log('MAX_SAFE_INTEGER + BigInt(1) === MAX_SAFE_INTEGER + BigInt(2)：', bigMax + BigInt(1) === bigMax + BigInt(2));
+    </script>
+</body>
+
+</html>

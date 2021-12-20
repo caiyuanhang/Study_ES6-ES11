@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>43.1、私有属性</title>
+</head>
+
+<body>
+    <script>
+        // 私有属性是面向对象语法中的一个非常重要的特性，能够让属性不被外界操作（包括：读取和修改）。在class中设置私有属性，只需要在属性前面加上#就可以将属性转为私有属性，注意：私有属性只能在class的内部被访问和修改
+        class Person {
+            name;
+            #age;
+            #weight;
+
+            constructor(name, age, weight) {
+                this.name = name;
+                this.#age = age;
+                this.#weight = weight;
+            }
+
+            visitPrivate() {
+                console.log('通过Person的visitPrivate方法访问私有属性：', this.#age, this.#weight);
+            }
+
+            editPrivate() {
+                this.#age = 'edit18'
+                this.#weight = 'edit100g'
+                console.log('通过Person的editPrivate方法修改私有属性：', this.#age, this.#weight);
+            }
+        }
+
+        let p = new Person('小黄', 22, '50kg')
+        console.log('Person的实例对象：', p)
+        console.log('name不是私有属性，可以被外界访问：', p.name);    // name没有设置为私有属性，可以正常被外界访问。
+        // console.log(p.#age);    // #age被设置为私有属性，不能被外界访问。当被外界访问时，会报错：Private field '#age' must be declared in an enclosing class。
+        p.visitPrivate()    // 在class内部访问私有属性
+        p.editPrivate()    // 在class内部修改私有属性
+    </script>
+</body>
+
+</html>

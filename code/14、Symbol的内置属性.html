@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14、Symbol的内置属性</title>
+</head>
+
+<body>
+    <script>
+        // 1）Symbol.hasInstance，当使用了Symbol.hasInstance方法的对象作为instanceof的构造函数对象时，会触发这个方法。
+        class Person {
+            static [Symbol.hasInstance](params) {
+                console.log('我是Symbol.hasInstance，当Person被当作是instanceof的构造函数对象时会被触发。', '函数的形参还能接收到instanceof检测的那个对象：', params);
+            };
+        };
+        let obj = {};
+        console.log('Symbol.hasInstance：', obj instanceof Person);
+
+
+        // 2）Symbol.isConcatSpreadable，该属性的值是一个布尔值，表示使用了这个属性的数组在concat时是否展开数组的内容，true为展开内容，false为不展开（默认为undefined，undefined也有展开效果）。
+        let arr1 = [1, 2, 3];
+        let arr2 = [4, 5, 6];
+        arr2[Symbol.isConcatSpreadable] = false;
+        let res = arr1.concat(arr2);
+        console.log('Symbol.isConcatSpreadable：', res);
+
+
+        // 3）Symbol.unscopables，该属性指向一个对象，当该对象使用了with关键字时，那些属性会被with环境排除。
+        // 扩展知识：with语句，用于改写对象作用域中的属性（不建议使用，缺点1：如果改写的属性在对象中不存在，会导致属性泄漏到全局作用域；缺点2：运行缓慢，性能低下）
+        let foo = function () { return 2; }
+
+        class MyClass1 {
+            // 【没有unscopables时】
+            foo() { return 1 }
+        }
+        with (MyClass1.prototype) {
+            console.log('对象没有使用Symbol.unscopables：', foo());   // 1
+        }
+
+        class MyClass2 {
+            // 【有unscopables时】
+            foo() { return 1; }
+            get [Symbol.unscopables]() {
+                return { foo: true };
+            }
+        }
+        with (MyClass2.prototype) {
+            console.log('对象使用Symbol.unscopables：', foo());    // 2
+        }
+
+
+        // 4）Symbol.match，对象的Symbol.match属性，是一个函数。当执行str.match(myObject)时，如果对象的这个属性存在，就会调用它，然后得到Symbol.match这个函数的返回值。
+        class MyMatcher {
+            [Symbol.match](string) {
+                // 这里的string是match方法前面的字符串。
+                return 'hello world'.indexOf(string)
+            }
+        }
+        const strInx = 'e'.match(new MyMatcher())
+        console.log('Symbol.match：', strInx);
+
+
+        // 5）Symbol.replace，
+
+
+        // 6）Symbol.search，
+
+
+        // 7）Symbol.split，
+
+
+        // 8）Symbol.iterator，
+
+
+        // 9）Symbol.toPrimitive
+
+
+        // 10）Symbol.toStringTag
+
+
+        // 11）Symbol.species
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40.5、ES8对象方法的扩展</title>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            category: '动漫',
+            subCategory: ['热血番', '恋爱番', '冒险番', '治愈番'],
+            name: ['海贼王', '昨日之歌', '妖精的尾巴', '夏日大作战'],
+        }
+
+        // 1、Object.keys
+        console.log('1、Object.keys：', Object.keys(obj))
+
+        // 2、Object.values
+        console.log('2、Object.values：', Object.values(obj))
+
+        // 3、Object.entries
+        console.log('3、Object.entries：', Object.entries(obj))
+
+        // 4、Object.getOwnPropertyDescriptors
+        console.log('4、Object.getOwnPropertyDescriptors：', Object.getOwnPropertyDescriptors(obj))
+
+        // 扩展：
+        // 5、关于Object.entries的应用，可以放在Map里面来使用
+        const map = new Map(Object.entries(obj))
+        console.log('5、将Object.entries应用在Map数据结构里面：', map)
+
+        // 6、Object.getOwnPropertyDescriptors获取的对象就是Object.create方法第二个参数里面每个属性的对象
+        let newObj = Object.create({ proto: '原型' }, {
+            contry: {
+                value: '日本动漫',
+                writable: true,
+                enumerable: false,
+                configurable: true
+            },
+            name: {
+                value: '各种动漫都有',
+                writable: true,
+                enumerable: true,
+                configurable: true,
+            }
+        })
+        console.log('6、Object.create创建的对象：', newObj)
+        console.log('将Object.getOwnPropertyDescriptors用在newObj上：', Object.getOwnPropertyDescriptors(newObj))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4、模板字符串</title>
+</head>
+
+<body>
+
+    <script>
+        // 模板字符串的两个特性：
+        // 1）允许字符串中出现换行符；
+        let str = `
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        `;
+        console.log('模板字符串-允许字符串中出现换行符：', str);
+
+
+        // 2）允许字符串中出现变量。
+        const name = '镇魂街';
+        let str1 = `我最喜欢的国漫之${name}`;
+        console.log('模板字符串-允许字符串中出现变量：', str1);
+    </script>
+</body>
+
+</html>

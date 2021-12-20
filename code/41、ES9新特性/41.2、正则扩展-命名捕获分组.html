@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>41.2、正则扩展-命名捕获分组</title>
+</head>
+
+<body>
+    <script>
+        // 需求：提取字符串中的url和链接文本
+
+        // 1、未使用命名捕获分组，exec返回对象中的group为undefined。
+        const str = '<a href="https://www.bilibili.com">bilibili</a>'
+        const reg1 = /<a href="(.*)">(.*)<\/a>/
+        console.log('未使用命名捕获分组：', reg1.exec(str))
+
+        // 2、使用命名捕获分组，exec返回对象中的group为一个对象，对象里面有对应的分组命名
+        const reg2 = /<a href="(?<url>.*)">(?<text>.*)<\/a>/
+        console.log('使用命名捕获分组：', reg2.exec(str))
+    </script>
+</body>
+
+</html>

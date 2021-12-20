@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18、生成器函数的参数</title>
+</head>
+
+<body>
+    <script>
+        // 生成器函数的参数分为两种，一种直接通过生成器函数传递参数，一种通过next方法传递参数
+        // 1）通过生成器函数传递参数
+        function* gene(arg) {
+            console.log('生成器函数的形参：', arg)
+            yield 111
+            yield 222
+            yield 333
+        }
+        const iterator = gene('canshu')
+        console.log(iterator.next())    // 执行第一个yield及前面的代码
+        console.log(iterator.next())    // 执行第二个yield以及到第一个yield之间的代码
+        console.log(iterator.next())    // 执行第三个yield以及到第二个yield之间的代码
+
+        console.log('------------------------------');
+
+        // // 2）通过next()方法传递参数，当前next()方法传递的参数将作为上一次yield语句的返回结果。
+        function* gene01() {
+            let one = yield 123
+
+            console.log('one：', one)
+            let two = yield 456
+
+            console.log('two：', two)
+            let three = yield 789
+
+            console.log('three：', three)
+        }
+        const iterator01 = gene01()
+        console.log(iterator01.next('000'))   // 第一个next方法的参数无法拿到。
+        console.log(iterator01.next('aaa'))
+        console.log(iterator01.next('bbb'))
+        console.log(iterator01.next('ccc'))
+    </script>
+</body>
+
+</html>

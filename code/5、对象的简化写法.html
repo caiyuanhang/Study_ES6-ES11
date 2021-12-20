@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5、对象的简化写法</title>
+</head>
+
+<body>
+    <script>
+        // 1、对象里面直接写入外部定义好的变量和函数；
+        let name = 'laowang';
+        let action = function () {
+            console.log('老王，你在干什么？');
+        }
+        let obj1 = {
+            name,
+            action,
+        }   // obj1等同于{ name: name, action: action } 
+        console.log('1、对象里面直接写入外部定义好的变量和函数：', obj1);
+
+
+        // 2、对象中的方法省略掉冒号和function关键字。
+        let obj2 = {
+            drink() {
+                console.log('你想喝些什么？');
+            }
+        }   // obj2等同于{ drink: function(){} }
+        console.log('2、对象中的方法省略掉冒号和function关键字：', obj2);
+    </script>
+</body>
+
+</html>

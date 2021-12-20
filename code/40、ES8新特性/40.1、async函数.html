@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40.1、async函数</title>
+</head>
+
+<body>
+    <script>
+        // 在普通函数前面加入async关键字，可以让普通函数转为async函数
+        async function fn() {
+            // 1、async函数返回值为非Promise、非Error的任意内容，默认Promise对象的状态都是成功的，并且其值为返回的值，包括：字符串、数字、布尔值、undefined、null、数组、对象、函数
+            // return 'string'
+            // return 123456
+            // return true
+            // return
+            // return null
+            // return ['四大名著']
+            // return { name: '动漫迷' }
+            // return () => { console.log('async的返回值是函数') }
+
+            // 2、async函数返回值为Error，则默认Promise对象的状态为失败的，值为Error抛出的内容。
+            // throw 'Error'
+            // throw new Error('err')
+
+            // 3、async函数返回值为Promise对象，则默认Promise的状态和值为这个Promise的状态和值。
+            return new Promise((resolve, reject) => {
+                resolve('返回新的Promise')
+                // reject('cal Api错误')
+            })
+        }
+
+        // async函数默认返回的是一个Promise对象，然后就可以通过then方法拿到成功或失败的数据了
+        const res = fn()
+        console.log('async函数的返回值：', res)
+        res.then(res => {
+            console.log('成功的数据：', res)
+        }, reason => {
+            console.log('失败的数据：', reason)
+        })
+    </script>
+</body>
+
+</html>

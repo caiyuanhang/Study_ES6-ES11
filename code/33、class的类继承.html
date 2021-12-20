@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>33、class的类继承</title>
+</head>
+
+<body>
+    <script>
+        // 父级类
+        class Phone {
+            // constructor函数的形参为new Phone时传入的实参
+            constructor(brand, price) {
+                this.brand = brand
+                this.price = price
+            }
+
+            // 注意：class挂在原型上的方法一定不能使用ES5对象的完整形式来书写。
+            call() {
+                console.log('Phone的call功能')
+            }
+        }
+
+        // 子级类，如果要继承父级类，一定要使用extends关键字来继承
+        class SmartPhone extends Phone {
+            constructor(brand, price, color, size) {
+                // 子级类在父级类brand/price这两个参数的情况下，新增了color/size这两个参数，如果子级不想再次添加this.brand = brand...，可以调用super方法，super方法相当于调用父级的constructor函数。
+                super(brand, price) // super()用ES5的写法来表示，就是Phone.call(this, brand, price)
+                this.color = color
+                this.size = size
+            }
+
+            photo() {
+                console.log('SmartPhone的photo功能')
+            }
+
+            playGame() {
+                console.log('SmartPhone的playGame功能')
+            }
+        }
+
+        const smart = new SmartPhone('小米', '1299', 'red', '4.8inch')
+        console.log('SmartPhone的实例：', smart)
+        smart.photo()
+        smart.playGame()
+        smart.call()
+    </script>
+</body>
+
+</html>

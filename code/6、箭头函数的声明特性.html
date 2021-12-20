@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6、箭头函数的声明特性</title>
+</head>
+
+<body>
+    <script>
+        // 1、箭头函数的声明方式。
+        let fn = () => {
+            console.log('我是一个箭头函数');
+        }
+        fn();
+
+
+        // 2、箭头函数的特性：
+        // 1）箭头函数的this是静态的，永远指向其声明时所处作用域的this，即便使用call、apply、bind也无法改变箭头函数的this；
+        window.name = 'xiaohua';
+        let obj = {
+            name: 'dahua',
+            fn2() {
+                console.log('fn2的this：', this.name)
+            },
+            fn3: () => {
+                console.log('fn3的this：', this.name)
+            },
+        }
+        let fn1 = () => {
+            console.log('fn1的this：', this.name)
+        }
+        fn1();  // 指向window
+        // 箭头函数无法使用call、apply、bind更改this，this依然指向window
+        fn1.call(obj);
+        fn1.apply(obj);
+        fn1.bind(obj);
+
+        // 对象简写形式声明的函数是普通函数，而不是箭头函数（因为普通函数可以更改this)，对象里面普通函数的this指向其调用位置所处作用域的this，这里指向obj。
+        obj.fn2();   // 指向obj
+        obj.fn2.call(window);
+
+        obj.fn3();  // fn3的this指向window？？？？
+
+        // 2）箭头函数不能作为构造函数实例化对象；
+        let func1 = () => { };
+        // let func2 = new func1();    // 报错，func1 is not a constructor
+
+        // 3）箭头函数不能使用argument变量；
+        let func3 = () => { console.log(argument) };
+        // func3(1, 2, 3);   // 报错，argument is not defined
+
+        // 4）箭头函数的简写，当形参只有一个时，可以省略圆括号；当函数体语句只有一句时，可以省略花括号以及return。
+        let func4 = item => { return item + item };
+        let func5 = item => item + item;
+    </script>
+</body>
+
+</html>

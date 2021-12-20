@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17、生成器函数</title>
+</head>
+
+<body>
+    <script>
+        // 关于生成器函数的*，可以偏左、居中、偏右都行，如：function * gen(){}、function *gen(){}。
+        function* gen() {
+            console.log('生成器函数')
+            // yield '123'   // 为了测试for...of循环
+            console.log('生成器函数111')
+        }
+
+        const iterator = gen()
+        // 从打印的内容可以看到，生成器函数调用后并不像普通函数调用那样直接执行函数体的内容，而是返回一个对象，这个对象的原型上有next方法，表明生成器函数有iterator接口，这样就可以通过next方法调用来执行里面生成器函数里面的内容
+        console.log("生成器函数gen的返回值：", iterator, typeof iterator)
+        // iterator.next()
+
+        // 竟然有iterator接口，那么也就可以使用for...of来遍历生成器函数。
+        for (let v of gen()) {
+            // 猜测：遍历的时候如果没有yield语句，则v不会拿到值，for...of循环的循环体不会执行，实际验证果然也是这样。也就是说当没有yield语句的时候，实际只执行了iterator.next()，而没有执行for...of循环体的代码
+            console.log('通过for...of循环来遍历生成器函数：', v)
+        }
+    </script>
+    <script>
+        // 测试生成器函数的yield语句：
+        function* gen01() {
+            console.log('aaa');
+            yield 'aaa'
+            console.log('bbb');
+            yield 'bbb'
+            console.log('ccc');
+            yield 'ccc'
+            console.log('ddd');
+        }
+
+        const iterator01 = gen01()
+        // 每个 yield 语句都会执行它以及它上面的代码（范围截止到上一个 yield 语句，不包含上一个 yield 语句本身）
+        console.log('第1个itetator：', iterator01.next());
+        console.log('第2个itetator：', iterator01.next());
+        console.log('第3个itetator：', iterator01.next());
+        console.log('第4个itetator：', iterator01.next());
+    </script>
+
+    <!-- 
+        总结：
+        1、生成器函数分为两种情况：
+        1）没有yield语句，每次调用生成器函数实例.next()都会调用一次生成器函数的函数体，当使用for...of循环时，for...of循环体代码没有执行
+        2）有yield语句，调用生成器函数实例.next()，会依次按照yield语句的先后顺序执行yield语句及其前面的代码（截止到上一次yield语句），next()会返回一个包含yield值的对象（yield的值在对象的value属性里面），当使用for...of循环时，可以直接拿到yield的值。
+     -->
+</body>
+
+</html>

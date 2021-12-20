@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40.2、await表达式</title>
+</head>
+
+<body>
+    <script>
+        const p = new Promise((resolve, reject) => {
+            // resolve('用户数据！')
+
+            reject('异常数据！')
+        })
+
+        // 1、await表达式要写在async里面
+        const main = async function () {
+            // 2、await右侧的表达式一般是Promise对象，并且左侧返回的是Promise成功的值。
+            try {
+                let res = await p;
+                console.log('Api请求的结果：', res)
+            } catch (e) {
+                // 3、当await出现异常情况时，需要通过try...catch...捕获
+                console.log('Api呼叫异常：', e)
+            }
+        }
+
+        main()
+    </script>
+</body>
+
+</html>

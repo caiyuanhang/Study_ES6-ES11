@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>43.5、动态import方法</title>
+</head>
+
+<body>
+    <button id="btn">点击动态引入文件</button>
+    <script src="./main.js" type="module">
+        // 动态 import 方法，接收一个引入的文件路径作为参数，返回值是一个 Promise 对象，成功的值为引入文件的整个模块对象。（js 的模块系统一般是静态载入，就是不管现在是否用到，都先将文件模块引入，这样就无法做到按需加载，而动态 import 方法，则可以在需要的时候才引入文件模块，可以做到按需加载-动态引入）
+    </script>
+</body>
+
+</html>

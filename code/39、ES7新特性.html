@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>39、ES7新特性</title>
+</head>
+
+<body>
+    <script>
+        // 1、ES7新特性一：Array.prototype.includes(参数)，检测传入的参数是否在数组中，在则返回true，不在则返回false。
+        const masterwork = ['水浒传', '红楼梦', '三国演义', '西游记']
+        console.log("1、Array.prototype.includes(参数)：")
+        console.log('检测masterwork数组是否包含"金瓶梅"：', masterwork.includes('金瓶梅'))
+        console.log('检测masterwork数组是否包含"三国演义"：', masterwork.includes('三国演义'))
+
+        // 2、ES7新特性二：参数1 ** 参数2（幂运算符），作用跟Math.pow(参数1, 参数2)相似。
+        console.log('2、幂运算符：参数1 ** 参数2')
+        console.log("使用幂运算符计算2的10次方：", 2 ** 10)
+        console.log("使用Math.pow()方法计算2的10次方：", Math.pow(2, 10))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>41.1、对象的rest参数和扩展运算符</title>
+</head>
+
+<body>
+    <script>
+        // 1、对象的rest参数
+        function www({ host, port, ...rest }) {
+            // 解构的单独变量拿到的是值
+            console.log("域名：", host);
+            console.log("端口：", port);
+
+            // rest参数拿到的是除已解构变量之外剩余的所有的变量（注意：剩余的所有变量都会装在一个对象里面，当然如果解构的是数组，则剩余所有的变量都会装到一个数组里面）
+            console.log("对象的rest参数：", rest);
+        }
+        www({
+            host: 'localhost',
+            port: 8080,
+            params: ['动画', '漫画', '街舞'],
+            name: 'B站',
+        })
+
+
+        // 2、对象的spread扩展运算符
+        const type = { type: 'beatbox' };
+        const animation = { animation: '妖精的尾巴' }
+        const count = { count: 111 }
+
+        // 对象的扩展运算符也可以像数组那样使用
+        let total = { ...type, ...animation, ...count }
+        console.log("type：", type)
+        console.log("animation：", animation)
+        console.log("count", count)
+        console.log("对象的spread扩展运算符：", total)
+    </script>
+</body>
+
+</html>

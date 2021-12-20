@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>35、class中get和set的设置</title>
+</head>
+
+<body>
+    <script>
+        // get可以在class实例对象属性被访问时，做一些操作。应用场景：通常对对象的动态属性值做一些封装，就是这个属性值是变化的，比如求总数、平均数，那可以在get函数内部对变化的属性值做一些处理，再返回。
+        // set可以在class实例对象属性被赋值时，做一些操作。应用场景：可以为赋值的属性值添加更多的控制和判断，比如判断新设置的值是不是符合要求的，如要求新设置的值是数字，结果赋值了一个字符串，那这就是不符合要求的。
+        class Phone {
+            constructor(price) {
+                this.price = price
+            }
+
+            get price() {
+                console.log('price属性被读取了')
+
+                // get的返回值可以设置为price的属性
+                return 123
+            }
+
+            set price(newVal) {
+                // 注意：set函数要添加一个形参，用来接收新赋值的内容
+                if (typeof newVal === 'string') {
+                    console.warn('请输入字符串');
+                    return
+                }
+                console.log('price属性被设置了', newVal)
+            }
+        }
+
+        const phone = new Phone("1999")
+        console.log(phone)
+        console.log(phone.price)
+    </script>
+</body>
+
+</html>

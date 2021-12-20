@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38.1、模块化语法写在标签内</title>
+</head>
+
+<body>
+    <script type="module">
+        // 1、将一个模块下的不同内容导入。注意：导入的路径中不能包含中文
+        import { ninjas, ninjutsu } from './js/module1.js'
+        console.log('1、将分别暴露的模块内容导入：', ninjas)
+        ninjutsu()
+
+        // 2、将模块的统一暴露内容导入。
+        import m2, { 恋爱番, 冒险番 } from './js/module2.js'
+        console.log('2、将统一暴露的模块内容以对象形式导出(m2)：', 恋爱番, 冒险番)
+
+        // 3、将模块的默认暴露内容导入，默认导入的内容可以任意命名。
+        import { default as m3 } from './js/module3.js'    // 默认导入的结构赋值形式
+        // import m3 from './module3.js'   // 默认导入的简便形式
+        console.log('3、将默认暴露的模块内容以对象形式导出(m3)：', m3)
+        console.log('将默认暴露的模块内容以单个形式导出(m2)：', m2)
+
+        // 4、将模块作为整体导入（不管是分别、统一、默认暴露，都可以使用整体导入的方式获取暴露的内容）。
+        import * as m4 from './js/module4.js'
+        console.log('4、将模块作为整体导入：', m4)
+    </script>
+</body>
+
+</html>

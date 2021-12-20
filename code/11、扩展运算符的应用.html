@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11、扩展运算符的应用</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        const obj = { a: 1, b: 2 };
+
+
+        // 1）用于数组、对象的合并；
+        const liubei = ['关羽', '张飞'];
+        const caocao = ['许褚', '夏侯渊'];
+        const zapaijun1 = liubei.concat(caocao);    // ES5用数组concat方法合并数组。
+        const zapaijun2 = [...liubei, ...caocao];    // ES6用...扩展运算符合并数组
+        const zapaijun3 = { ...obj, name: '孙权' };
+        console.log('...扩展运算符-用于数组合并：', zapaijun1, zapaijun2, zapaijun3);
+
+
+        // 2）用于数组、对象的克隆。注意：如果数组里面的元素有引用类型元素，则复制的为浅拷贝。
+        const zimu = ['E', 'F', 'G'];
+        const zimu_clone = [...zimu];
+        const obj_clone = { ...obj };
+        console.log('...扩展运算符-用于数组克隆：', zimu, zimu_clone, obj_clone);
+
+
+        // 3）将伪数组装成真数组。
+        let divs = document.querySelectorAll('div');
+        let new_divs = [...divs]
+        console.log('...扩展运算符-用于将伪数组转成真数组：', divs, new_divs);
+    </script>
+</body>
+
+</html>

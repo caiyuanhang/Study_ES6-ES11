@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8、函数参数的默认值</title>
+</head>
+
+<body>
+    <script>
+        // 1、给形参赋值初始值，一般位置要靠后（潜规则，当你在后面位置的形参赋值初始值时，如果没有传入实参，可以使用初始值代替传入的实参，如示例res1。如果你在前面的形参赋值初始值，后面的没有，则会出现函数结果跟预期不一致的情况，如示例res2）
+        function add(a = 5, b, c = 10) {
+            return a + b + c;
+        }
+        let res = add(1, 2, 3);
+        let res1 = add(1, 2)
+        let res2 = add(2)
+        console.log("给形参赋值初始值-a、b、c都有实参：", res);
+        console.log("给形参赋值初始值-a、b有实参，c采用默认值：", res1);
+        console.log("给形参赋值初始值-a有实参、b无实参且没有默认值、c有默认值：", res2);
+
+
+        // 2、与对象的解构赋值相结合，因为实参传入的是一个对象，所以形参解构时，无论解构出来的前后对象属性是否有默认值，是否有传入值，都不影响预期的执行结果。
+        function connect({ host = 'localhost', username, password, port }) {
+            console.log('host：', host);
+            console.log('username：', username);
+            console.log('password：', password);
+            console.log('port：', port);
+        }
+        connect({
+            host: '127.0.0.1',
+            username: 'root',
+            password: 'root',
+            port: 3306,
+        })
+        connect({
+            username: 'root',
+            password: 'root',
+            port: 3306,
+        })
+    </script>
+</body>
+
+</html>
